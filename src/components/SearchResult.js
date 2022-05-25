@@ -16,6 +16,7 @@ export default function SearchResult({ match }) {
     const [loading, setloading] = useState(false)
     const [page, setpage] = useState(1);
     const [totalResults, settotalResults] = useState(0)
+    const proxyUrl = "https://cors-anywhere.herokuapp.com/"
 
 
     useEffect(async () => {
@@ -24,7 +25,7 @@ export default function SearchResult({ match }) {
         // console.log(category, country)
         // let url = `https://newsapi.org/v2/top-headlines?country=${country}&category=general&apiKey=c90313c35bd8440eac537d5d7455ff5e`
         // let url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apikey=${apikey}&page=1&pagesize=${pagesize}`
-        let url = `https://newsapi.org/v2/everything?q=${category}&from=2022-05-25&sortBy=popularity&apiKey=${apikey}`
+        let url = `${proxyUrl}https://newsapi.org/v2/everything?q=${category}&from=2022-05-25&sortBy=popularity&apiKey=${apikey}`
         console.log(url)
         let data = await fetch(url)
         let parsedData = await data.json()
@@ -38,7 +39,7 @@ export default function SearchResult({ match }) {
     const handlePrevclick = async () => {
         console.log("PREVIOUS")
 
-        let url = `https://newsapi.org/v2/top-headlines?${country}&category=${category}&apikey=${apikey}&page=${page - 1}&pagesize=${pagesize}`
+        let url = `${proxyUrl}https://newsapi.org/v2/top-headlines?${country}&category=${category}&apikey=${apikey}&page=${page - 1}&pagesize=${pagesize}`
         setloading(true)
         let data = await fetch(url)
         let parsedData = await data.json()
@@ -59,7 +60,7 @@ export default function SearchResult({ match }) {
         else {
 
 
-            let url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apikey=${apikey}&page=${page + 1}&pagesize=${pagesize}`
+            let url = `${proxyUrl}https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apikey=${apikey}&page=${page + 1}&pagesize=${pagesize}`
             setloading(true)
             let data = await fetch(url)
             let parsedData = await data.json()

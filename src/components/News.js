@@ -13,6 +13,7 @@ const News = ({ key, pagesize, country, category }) => {
   if (country == null) {
     country = "in";
   }
+  const proxyUrl = "https://cors-anywhere.herokuapp.com/"
 
   const [articles, setarticles] = useState([]);
   const [loading, setloading] = useState(false)
@@ -23,8 +24,9 @@ const News = ({ key, pagesize, country, category }) => {
   useEffect(async () => {
     console.log("csdm")
     console.log(category, country)
+
     // let url = `https://newsapi.org/v2/top-headlines?country=${country}&category=general&apiKey=c90313c35bd8440eac537d5d7455ff5e`
-    let url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apikey=${apikey}&page=1&pagesize=${pagesize}`
+    let url = `${proxyUrl}https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apikey=${apikey}&page=1&pagesize=${pagesize}`
     let data = await fetch(url)
     let parsedData = await data.json()
     console.log(parsedData)
@@ -37,7 +39,7 @@ const News = ({ key, pagesize, country, category }) => {
   const handlePrevclick = async () => {
     console.log("PREVIOUS")
 
-    let url = `https://newsapi.org/v2/top-headlines?${country}&category=${category}&apikey=${apikey}&page=${page - 1}&pagesize=${pagesize}`
+    let url = `${proxyUrl}https://newsapi.org/v2/top-headlines?${country}&category=${category}&apikey=${apikey}&page=${page - 1}&pagesize=${pagesize}`
     setloading(true)
     let data = await fetch(url)
     let parsedData = await data.json()
@@ -58,7 +60,7 @@ const News = ({ key, pagesize, country, category }) => {
     else {
 
 
-      let url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apikey=${apikey}&page=${page + 1}&pagesize=${pagesize}`
+      let url = `${proxyUrl}https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apikey=${apikey}&page=${page + 1}&pagesize=${pagesize}`
       setloading(true)
       let data = await fetch(url)
       let parsedData = await data.json()
