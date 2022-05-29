@@ -18,7 +18,7 @@ To run this project locally, follow these steps.
 1. Clone the project locally, change into the directory, and install the dependencies:
 git clone https://github.com/vedanshpaliwal/News5-App.git
 
-# install using NPM or Yarn
+install using NPM
 npm install
 
 ### `npm start`
